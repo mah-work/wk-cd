@@ -26,4 +26,11 @@ The replace() method is used to replace the word in the URL path with the desire
 Finally, we update the URL by assigning the modified URL to window.location.href, which will cause the browser to redirect to the updated URL.
 */
 
-
+//insert before x function
+    const parentWo = document.querySelector('.woocommerce-products-header');
+    const noticeWrapperWo = document.querySelector('.button-pushbar');
+    const orderingWo = document.querySelector('#category-page-popular');
+    
+    if (window.innerWidth <= 1024) {
+        parentWo.insertBefore(orderingWo, noticeWrapperWo);
+    }
