@@ -34,3 +34,6 @@ Finally, we update the URL by assigning the modified URL to window.location.href
     if (window.innerWidth <= 1024) {
         parentWo.insertBefore(orderingWo, noticeWrapperWo);
     }
+
+//discount snipet
+-{{ item.price | pct item.list_price }}%
