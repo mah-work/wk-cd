@@ -37,3 +37,22 @@ Finally, we update the URL by assigning the modified URL to window.location.href
 
 //discount snipet
 -{{ item.price | pct item.list_price }}%
+
+//add custom css for a specific page only Liquid
+{%assign cartSlider = 'cart-others-also-bought'%}
+{%if content.id == cartSlider%}
+    <style></style>
+{%endif%}
+
+//snippet for clerk home page 
+<!-- Start Clerk.io E-commerce Personalisation tool - www.clerk.io -->
+<span class="clerk clerk1"
+    data-template="@home-page-visitor-complementary">&nbsp;
+</span>
+<!-- End Clerk.io E-commerce Personalisation tool - www.clerk.io -->
+<!-- Start Clerk.io E-commerce Personalisation tool - www.clerk.io -->
+<span class="clerk clerk2"
+    data-exclude-from=".clerk1"
+    data-template="@home-page-popular">&nbsp;
+</span>
+<!-- End Clerk.io E-commerce Personalisation tool - www.clerk.io -->
