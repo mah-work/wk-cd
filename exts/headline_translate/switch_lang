@@ -1,0 +1,97 @@
+<div class="container">
+  <input type="text" id="template-variable-headline" ng-model="content.template_variables[variable]" ng-change="modified = 1" class="ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="Most Popular In This Category">
+</div>
+
+var input = document.getElementById('template-variable-headline');
+var originalInput = [
+  'See These Checkout Offers',
+  'Most Popular In This Category',
+  'Hot Among Our Other Customers Right Now',
+  'Our Most Popular Products',
+  'Our Top Picks For You',
+  'Not Right? Try One Of These Instead',
+  'Other Customers Also Bought These'
+];
+
+var languageData = {
+  EN: [
+    'See These Checkout Offers',
+    'Most Popular In This Category',
+    'Hot Among Our Other Customers Right Now',
+    'Our Most Popular Products',
+    'Our Top Picks For You',
+    'Not Right? Try One Of These Instead',
+    'Other Customers Also Bought These'
+  ],
+  DK: [
+    'Andre har også købt',
+    'Populære i denne kategori',
+    'Populære produkter lige nu',
+    'Vores mest populære produkter',
+    'Vores anbefalinger til dig',
+    'Relaterede produkter',
+    'Andre købte også'
+  ],
+  DE: [
+    'Kunden, die diesen Artikel gekauft haben, haben auch diese Artikel gekauft:',
+    'Bestseller in dieser Kategorie',
+    'Derzeitige Top Seller',
+    'Bestseller',
+    'Wir empfehlen:',
+    'Alternativen',
+    'Kunden, die diesen Artikel gekauft haben, haben auch diese Artikel gekauft:'
+  ],
+  IT: [
+    'Altri clienti hanno comprato...',
+    'I più popolari in questa categoria',
+    'I più venduti recentemente',
+    'I nostri prodotti più popolari',
+    'Prodotti scelti per te',
+    'Prodotti alternativi',
+    'Altri clienti hanno comprato...'
+  ],
+  SP: [
+    'Comprados juntos habitualmente',
+    'Los más vendidos en esta categoria',
+    'Productos del momento',
+    'Los más vendidos',
+    'Recomendamos según tus tendencias de compra',
+    'Productos relacionados',
+    'Comprados juntos habitualmemnte'
+  ],
+};
+
+// Create buttons for each language
+for (var language in languageData) {
+  var button = document.createElement('button');
+  button.innerHTML = language;
+  button.setAttribute('data-language', language);
+  button.style.display = 'none'; // Hide the buttons initially
+  button.addEventListener('click', function() {
+    var language = this.getAttribute('data-language');
+    var placeholder = input.getAttribute('placeholder');
+    var matchedIndex = languageData.EN.indexOf(placeholder);
+    if (matchedIndex !== -1) {
+      input.setAttribute('placeholder', languageData[language][matchedIndex]);
+    } else {
+      console.log("Phrase does not exist");
+    }
+  });
+
+  // Append the button to the container
+  var container = document.querySelector('.container');
+  container.appendChild(button);
+  
+  // Add a flag variable to each array
+  languageData[language].forEach(function(phrase, index) {
+    phrase.flag = language;
+  });
+}
+
+// Show buttons on input click
+input.addEventListener('click', function() {
+  var buttons = document.querySelectorAll('button[data-language]');
+  buttons.forEach(function(button) {
+    button.style.display = 'inline'; // Show the buttons on input click
+  });
+});
