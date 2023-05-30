@@ -1,0 +1,32 @@
+// title lines left and right
+
+h3.clerk_title {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    color: #000;
+    line-height: 24px;
+    max-width: fit-content;
+}
+
+h3.clerk_title:before {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: #000;
+    left: -75px;
+    top: 50%;
+    position: absolute;
+}
+
+h3.clerk_title:after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: #000;
+    right: -75px;
+    top: 50%;
+    position: absolute;
+}
