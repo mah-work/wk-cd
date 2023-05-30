@@ -30,3 +30,12 @@ h3.clerk_title:after {
     top: 50%;
     position: absolute;
 }
+
+// nice transition
+
+.class{
+    transition: color .15s ease-in-out,
+    background-color .15s ease-in-out,
+    border-color .15s ease-in-out,
+    box-shadow .15s ease-in-out;
+}
