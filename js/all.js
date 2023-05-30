@@ -37,7 +37,7 @@ Finally, we update the URL by assigning the modified URL to window.location.href
     }
 
 //discount snipet
--{{ item.price | pct item.list_price }}%
+%{{ item.price | pct item.list_price }}%
 
 //add custom css for a specific page only Liquid
 {%assign cartSlider = 'cart-others-also-bought'%}
