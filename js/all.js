@@ -45,16 +45,3 @@ Finally, we update the URL by assigning the modified URL to window.location.href
     <style></style>
 {%endif%}
 
-//snippet for clerk home page 
-<!-- Start Clerk.io E-commerce Personalisation tool - www.clerk.io -->
-<span class="clerk clerk1"
-    data-template="@home-page-visitor-complementary">&nbsp;
-</span>
-<!-- End Clerk.io E-commerce Personalisation tool - www.clerk.io -->
-<!-- Start Clerk.io E-commerce Personalisation tool - www.clerk.io -->
-<span class="clerk clerk2"
-    data-exclude-from=".clerk1"
-    data-template="@home-page-popular">&nbsp;
-</span>
-<!-- End Clerk.io E-commerce Personalisation tool - www.clerk.io -->
-
