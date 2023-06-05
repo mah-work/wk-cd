@@ -62,13 +62,16 @@ if (isMobile) {
   let isButtonClicked = false; // Flag to track if the button has been clicked
 
   const clerkSearchFilters = document.getElementById("clerk-search-filters");
-  const clerkFacets = document.querySelector(".clerk-design-component-bQip3ePy");
+  const clerkFacets = document.querySelector(
+    ".clerk-design-component-bQip3ePy"
+  );
 
   if (clerkFacets && clerkFacets.nextSibling) {
     clerkSearchFilters.insertBefore(filterButton, clerkFacets.nextSibling);
 
-    filterButton.addEventListener("click", function() {
-      if (!isButtonClicked) { // Check if the button has already been clicked
+    filterButton.addEventListener("click", function () {
+      if (!isButtonClicked) {
+        // Check if the button has already been clicked
         isButtonClicked = true; // Set the flag to indicate button click
 
         const overlay = document.createElement("div");
@@ -84,21 +87,28 @@ if (isMobile) {
         const facets = document.querySelector(".clerk-facets").cloneNode(true);
         facets.classList.add("overlay-facets");
 
+        const pElement = document.createElement("p");
+        pElement.textContent = "This is the additional paragraph.";
+
+        facetsContainer.appendChild(pElement);
         facetsContainer.appendChild(closeButton);
         facetsContainer.appendChild(facets);
 
         overlay.appendChild(facetsContainer);
         document.body.appendChild(overlay);
 
-        closeButton.addEventListener("click", function() {
+        closeButton.addEventListener("click", function () {
           if (overlay.parentNode === document.body) {
             document.body.removeChild(overlay);
             isButtonClicked = false; // Reset the flag when the toggle is completed
           }
         });
 
-        document.addEventListener("click", function(event) {
-          if (!overlay.contains(event.target) && event.target !== filterButton) {
+        document.addEventListener("click", function (event) {
+          if (
+            !overlay.contains(event.target) &&
+            event.target !== filterButton
+          ) {
             if (overlay.parentNode === document.body) {
               document.body.removeChild(overlay);
               isButtonClicked = false; // Reset the flag when the toggle is completed
@@ -108,43 +118,46 @@ if (isMobile) {
       }
     });
   } else {
-    console.error("Unable to find clerk-search-filters or clerk-design-component-bQip3ePy elements.");
+    console.error(
+      "Unable to find clerk-search-filters or clerk-design-component-bQip3ePy elements."
+    );
   }
 } else {
   console.log("Window too big");
 }
 
 // css 
- /*
- .clerk-facets {
-  display: none;
+/*
+ @media screen and (max-width: 768px) {
+  .clerk-facets {
+    display: none;
+  }
 }
 
 .overlay .overlay-facets {
   display: block;
 }
-
-Overlay styles
 .overlay {
   position: fixed;
-  bottom: 0; Change from top to bottom
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 0; /* Change from 100% to 0 
+  height: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: flex-end; /* Change from center to flex-end 
+  align-items: flex-end;
   justify-content: center;
-  animation: slideUp 0.3s ease-in-out forwards; /* Change animation to slideUp 
+  animation: slideUp 0.3s ease-in-out forwards;
+  border-radius: 8px 8px 0 0;
 }
 
-/* Animation for overlay slide-up 
 @keyframes slideUp {
   0% {
-    height: 0; /* Change from opacity to height 
+    height: 0;
   }
+
   100% {
-    height: 60%; /* Change from 1 to 100% 
+    height: 60%;
   }
 }
 
@@ -173,8 +186,27 @@ Overlay styles
   color: #333;
 }
 
-// html 
+#filterButton {
+  background: #fff;
+  width: 100%;
+  border: 1px solid #009661;
+  padding: 6px;
+  color: #4a545b;
+  font-size: .875rem;
+  line-height: 34px;
+  border-radius: 3px;
+  -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+#filterButton:hover {
+  background-color: #eee;
+  color: #009661;
+  cursor: pointer;
+}
+*/
 
+// html 
+/*
 <div id="clerk-search-filters">
   <div id="bQip3ePy" class="clerk-design-component-bQip3ePy ">
     <p>Zu "topro tablett" wurden "5" Produkte gefunden</p>
@@ -183,4 +215,4 @@ Overlay styles
     <p>Facets</p>
   </div>
 </div>
-/*
+*/
