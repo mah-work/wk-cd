@@ -45,3 +45,8 @@ Finally, we update the URL by assigning the modified URL to window.location.href
     <style></style>
 {%endif%}
 
+{% if (products.length + categories.length + pages.length) == 0 %}
+<div class="clerk_instant_search_noresults">
+  No results for: <b>{{ query }}</b>... 
+</div>
+{% endif %}
