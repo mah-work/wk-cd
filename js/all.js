@@ -50,3 +50,137 @@ Finally, we update the URL by assigning the modified URL to window.location.href
   No results for: <b>{{ query }}</b>... 
 </div>
 {% endif %}
+
+//toggle slide up filter button
+
+let isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+if (isMobile) {
+  const filterButton = document.createElement("button");
+  filterButton.textContent = "Filter";
+  filterButton.id = "filterButton";
+  let isButtonClicked = false; // Flag to track if the button has been clicked
+
+  const clerkSearchFilters = document.getElementById("clerk-search-filters");
+  const clerkFacets = document.querySelector(".clerk-design-component-bQip3ePy");
+
+  if (clerkFacets && clerkFacets.nextSibling) {
+    clerkSearchFilters.insertBefore(filterButton, clerkFacets.nextSibling);
+
+    filterButton.addEventListener("click", function() {
+      if (!isButtonClicked) { // Check if the button has already been clicked
+        isButtonClicked = true; // Set the flag to indicate button click
+
+        const overlay = document.createElement("div");
+        overlay.classList.add("overlay");
+
+        const facetsContainer = document.createElement("div");
+        facetsContainer.classList.add("facets-container");
+
+        const closeButton = document.createElement("button");
+        closeButton.classList.add("close-button");
+        closeButton.innerHTML = "&times;";
+
+        const facets = document.querySelector(".clerk-facets").cloneNode(true);
+        facets.classList.add("overlay-facets");
+
+        facetsContainer.appendChild(closeButton);
+        facetsContainer.appendChild(facets);
+
+        overlay.appendChild(facetsContainer);
+        document.body.appendChild(overlay);
+
+        closeButton.addEventListener("click", function() {
+          if (overlay.parentNode === document.body) {
+            document.body.removeChild(overlay);
+            isButtonClicked = false; // Reset the flag when the toggle is completed
+          }
+        });
+
+        document.addEventListener("click", function(event) {
+          if (!overlay.contains(event.target) && event.target !== filterButton) {
+            if (overlay.parentNode === document.body) {
+              document.body.removeChild(overlay);
+              isButtonClicked = false; // Reset the flag when the toggle is completed
+            }
+          }
+        });
+      }
+    });
+  } else {
+    console.error("Unable to find clerk-search-filters or clerk-design-component-bQip3ePy elements.");
+  }
+} else {
+  console.log("Window too big");
+}
+
+// css 
+ /*
+ .clerk-facets {
+  display: none;
+}
+
+.overlay .overlay-facets {
+  display: block;
+}
+
+Overlay styles
+.overlay {
+  position: fixed;
+  bottom: 0; Change from top to bottom
+  left: 0;
+  width: 100%;
+  height: 0; /* Change from 100% to 0 
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end; /* Change from center to flex-end 
+  justify-content: center;
+  animation: slideUp 0.3s ease-in-out forwards; /* Change animation to slideUp 
+}
+
+/* Animation for overlay slide-up 
+@keyframes slideUp {
+  0% {
+    height: 0; /* Change from opacity to height 
+  }
+  100% {
+    height: 60%; /* Change from 1 to 100% 
+  }
+}
+
+.facets-container {
+  border-radius: 8px 8px 0 0;
+  background-color: lightblue;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0 auto;
+}
+
+.close-button {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+// html 
+
+<div id="clerk-search-filters">
+  <div id="bQip3ePy" class="clerk-design-component-bQip3ePy ">
+    <p>Zu "topro tablett" wurden "5" Produkte gefunden</p>
+  </div>
+  <div class="clerk-facets">
+    <p>Facets</p>
+  </div>
+</div>
+/*
