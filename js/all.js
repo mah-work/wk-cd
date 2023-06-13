@@ -216,3 +216,28 @@ if (isMobile) {
   </div>
 </div>
 */
+ 
+ 
+ 
+ // filter slider
+
+$(document).ready(function() {
+  if (window.matchMedia("(max-width: 767px)").matches) {
+    $("#filterButton").click(function() {
+      $("#clerk-search-filters").toggle().css("animation-name", "slideIn");
+    });
+
+    $(".icon.icon-x.icon-md, .clerk-facet-name").click(function() {
+      $("#clerk-search-filters").css("animation-name", "slideOut");
+      setTimeout(function() {
+        $("#clerk-search-filters").hide();
+      }, 300);
+    });
+
+    $("#clerk-search-filters").on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(e) {
+      if (e.originalEvent.animationName === "slideOut") {
+        $("#clerk-search-filters").hide();
+      }
+    });
+  }
+});
