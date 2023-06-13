@@ -39,3 +39,39 @@ h3.clerk_title:after {
     border-color .15s ease-in-out,
     box-shadow .15s ease-in-out;
 }
+
+// filter transition
+
+ #clerk-search-filters {
+    padding: 0 30px;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #FFF;
+    box-sizing: border-box;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    animation-duration: 0.8s; /* Animation duration */
+    animation-fill-mode: both; /* Apply styles from start to end of animation */
+    height: 100vh;
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-100%); /* Start from above */
+    }
+    100% {
+      transform: translateY(0%); /* End at original position */
+    }
+  }
+
+  @keyframes slideOut {
+    0% {
+      transform: translateY(0%); /* Start from original position */
+    }
+    100% {
+      transform: translateY(-100%); /* End above */
+    }
+  }
