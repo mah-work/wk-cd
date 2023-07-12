@@ -241,3 +241,21 @@ $(document).ready(function() {
     });
   }
 });
+
+
+var closeButton = document.querySelector('.drawer__close-button');
+var searchContainer = document.querySelector('.clerk-instant-search-container');
+
+function openSearchContainer() {
+  console.log('button click');
+  searchContainer.style.transform = 'translateX(0)';
+  
+  // Remove the event listener after it has been triggered
+  document.removeEventListener('click', openSearchContainer);
+}
+
+document.addEventListener('click', openSearchContainer);
+
+closeButton.addEventListener('click', function() {
+  searchContainer.style.transform = 'translateX(-100%)';
+});
