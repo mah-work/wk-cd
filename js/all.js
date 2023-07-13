@@ -259,3 +259,22 @@ document.addEventListener('click', openSearchContainer);
 closeButton.addEventListener('click', function() {
   searchContainer.style.transform = 'translateX(-100%)';
 });
+
+
+const hitsDivided = {{ hits }} / 40;
+const pageSize = Math.ceil(hitsDivided); // Round up to the nearest whole number
+
+const titleSearch = document.querySelector('.clerk-design-component-zJly4LMD');
+
+// Clear existing content
+titleSearch.innerHTML = '';
+
+for (let i = 0; i < pageSize; i++) {
+  const currentPage = i + 1;
+  const buttonPagination = document.createElement('button');
+  const buttonPgText = document.createTextNode(currentPage);
+  buttonPagination.appendChild(buttonPgText);
+  buttonPagination.setAttribute('onclick', `Clerk('content', '#clerk-search', 'more', 5);`);
+
+  titleSearch.appendChild(buttonPagination);
+}
