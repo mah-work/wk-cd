@@ -1,0 +1,34 @@
+<script>
+var lv_product_title = document.querySelectorAll('.clerk-design-component-fuZZfCm8');
+var lv_product_preview_container = document.querySelector('#dIMJkcep');
+var lv_product_p_image = lv_product_preview_container.querySelector('.preview_image');
+var lv_product_p_title = lv_product_preview_container.querySelector('.preview_title');
+var lv_product_p_price = lv_product_preview_container.querySelector('.preview_price');
+
+lv_product_title.forEach((element) => {
+    element.addEventListener('mouseenter', () => {
+        lv_product_preview_container.classList.add("visible");
+
+        var hoveredImage = element.querySelector('img');
+        if (hoveredImage) {
+            var src = hoveredImage.getAttribute('src');
+            if (src) {
+                lv_product_p_image.setAttribute('src', src);
+            }
+        }
+
+        var titleElement = element.querySelector('.clerk-design-component-8hTOP8N2');
+        var priceElement = element.querySelector('.clerk-design-component-LLSZAuC3');
+        
+        if (titleElement) {
+            var titleText = titleElement.textContent;
+            lv_product_p_title.textContent = titleText;
+        }
+
+        if (priceElement) {
+            var priceText = priceElement.textContent;
+            lv_product_p_price.textContent = priceText;
+        }
+    });
+});
+</script>
