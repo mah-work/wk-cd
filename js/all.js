@@ -278,3 +278,25 @@ for (let i = 0; i < pageSize; i++) {
 
   titleSearch.appendChild(buttonPagination);
 }
+
+
+function insertSpanInDeepestElement(selector, dataTemplate) {
+  var hostSlider = document.querySelector(selector);
+
+  if (hostSlider) {
+    var innerMostDiv = hostSlider.querySelector('.column_attr.mfn-inline-editor.clearfix');
+
+    if (innerMostDiv) {
+      var newSpan = document.createElement('span');
+      newSpan.className = 'clerk';
+      newSpan.setAttribute('data-template', dataTemplate);
+      innerMostDiv.appendChild(newSpan);
+    }
+  }
+}
+
+if (window.location.href === 'https://orientalnotes.nl/') {
+  insertSpanInDeepestElement('.clerk_slider_visitor', '@home-page-visitor-complementary');
+  insertSpanInDeepestElement('.clerk_slider_trending', '@home-page-trending');
+  insertSpanInDeepestElement('.clerk_slider_popular', '@home-page-popular');
+}
