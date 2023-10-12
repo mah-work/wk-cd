@@ -300,3 +300,18 @@ if (window.location.href === 'https://orientalnotes.nl/') {
   insertSpanInDeepestElement('.clerk_slider_trending', '@home-page-trending');
   insertSpanInDeepestElement('.clerk_slider_popular', '@home-page-popular');
 }
+
+(function() {
+  // Wrap your code inside a self-executing function to create a local scope
+  const windowWidth = window.innerWidth;
+  const clerkSliderHost = document.querySelector('.clerk-product-slider');
+  const productPageHost = document.querySelector('.column.main');
+  const clerkSliderBottom = document.getElementById('product-page-others-also-bought');
+  const clerkSliderTopRight = document.getElementById('product-page-alternatives');
+
+  if (windowWidth >= 768) {
+    clerkSliderHost.insertBefore(clerkSliderBottom, clerkSliderHost.children[0]);
+  } else {
+    productPageHost.appendChild(clerkSliderTopRight);
+  }
+})();
