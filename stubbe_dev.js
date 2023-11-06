@@ -4,7 +4,7 @@
        class="clerk" id="clerk-content-two" data-api="{{ section.settings.clerk_select }}" data-limit="4" data-products="[{{ product.id}}]">
        <div id="ProductGridContainerClerkTwo" class="clerk-section page-width">
           <slider-component class="slider-mobile-gutter page-width slider-component-desktop clerkSectionForTwo" style="display: none;">
-             (% raw %)
+            {% raw %}
              <ul id="Slider-{{ clerkSectionId }}" class="grid product-grid contains-card contains-card--product contains-card--standard grid--4-col-desktop grid--1-col-tablet-down slider show_desktop_slider slider--desktop slider--tablet grid--peek">
                 {% for product in products %}
                     {% if product.vendor != "gift card" %}
@@ -48,13 +48,13 @@
                                   <s class="price-item price-item--regular" style="text-decoration: line-through important;">{{ product.list_price❘ currency_converter }}</s>
                                   <span class="price-item price-item--sale price-item--last">{{ product.price_max | currency_converter }}</span> </span>
                                </div>
-                               {% else %)
+                               {% else %}
                                <div class="price_regular">
                                   <span class="price-item price-item--regular">
                                   {{ product.price_max❘ currency_converter }}
                                   </span>
                                </div>
-                               {% endif %)
+                               {% endif %}
                             </div>
                             {% if product.on_sale true and product.stock_count > @ %}
                             <span class="badge badge--bottom-left color-accent-1" style="float: right; font-weight: bold important;">{% if current_domain contains 'dk' %)UDSALG{% else %)SALE{% endif %}</span> {% endif %}
@@ -62,10 +62,10 @@
                       </div>
                    </a>
                 </li>
-                {% endif %)
-                {% endfor %)
+                {% endif %}
+                {% endfor %}
              </ul>
-             {% endraw)
+             {% endraw %}
           </slider-component>
        </div>
        </span>
